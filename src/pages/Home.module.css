@@ -1,0 +1,168 @@
+.homeContainer {
+	margin: 50px 50px 0 50px;
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+} 
+
+.callToAction {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #D9D9D9;
+	height: 150px;
+	width: 700px;
+	border-radius: 15px;
+}
+
+.callToActionText {
+	padding: 20px;
+	font-size: 1.5rem;
+}
+
+.callToActionBtn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #C9672B;
+	height: 80px;
+	width: 350px;
+	border: none;
+	border-radius: 20px;
+	padding: 5px;
+	font: inherit;
+	cursor: pointer;
+	font-size: 1.8rem;
+	margin-right: 35px;
+	color: #E3E3E3;
+}
+
+.callToActionBtn:hover {
+	opacity: 60%;
+}
+
+.creatureFeatureContainer {
+	display: flex;
+	margin-inline: 100px;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.creatureFeatureImg {
+	width: 700px;
+	height: 370px;
+	margin: 0 0 50px 0;
+	border-radius: 10px;
+	object-fit: cover;
+}
+
+.homeLeftColumn, .homeRightColumn {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	align-items: center;
+}
+
+.animalGameContainer {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	margin-top: 10px;
+}
+
+.animalGameMainContainer {
+	display: flex;
+	height: 409px;
+	width: 700px;
+	background-color: #D9D9D9;
+	border-radius: 15px;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	font-size: 1.5rem;
+	font-weight: 700;
+	user-select: none;
+}
+
+.animalGameImg {
+	border-radius: 10px;
+	height: 250px;
+}
+
+.wildFactContainer {
+	display: flex;
+	background-color: #D9D9D9;
+	height: 150px;
+	width: 700px;
+	justify-content: center;
+	align-items: center;
+	border-radius: 15px;
+	flex-direction: column;
+}
+
+.wildFactText {
+	margin-top: 0;
+	font-size: 1.4rem;
+}
+
+.sectionHeading {
+	font-size: 1.8rem;
+	margin: 0;
+}
+
+.sectionHeadingContainer {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	width: 100%;
+	margin: 0 0 20px 0;
+}
+
+.sectionHeadingLine {
+	height: 5px;
+	background-color: #2C2323;
+	border-radius: 15px;
+}
+
+.animalGameContainer .sectionHeadingLine {
+	width: 24%;
+}
+.wildFactContainer .sectionHeadingLine {
+	width: 37%;
+}
+.creatureFeatureContainer .sectionHeadingLine {
+	width: 32%;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.hintBtn, .giveupBtn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: none;
+	border: none;
+	cursor: pointer;
+	font-size: 1.5rem;
+	font-weight: 700;
+	font-family: "Koulen", serif;
+}
+
+.hintBtn:hover, .giveupBtn:hover {
+	opacity: 60%;
+}
+
+.gameBtnContainer {
+	display: flex;
+	gap: 200px;
+}
+
+.gameWordText {
+	letter-spacing: 5px;
+}
