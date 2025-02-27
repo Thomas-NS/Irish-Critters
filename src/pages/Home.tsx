@@ -1,8 +1,58 @@
 import styles from './Home.module.css';
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 const Home = () => {
-	console.log(Math.random());
+	const [gameWordInputs, setGameWordInputs] = useState<{ 
+		letter: string;
+		input: string;
+		index: number;
+	}[]>([]);
+	const [remainingLetters, setRemainingLetters] = useState<string[]>([]);
+	const [hintCount, setHintCount] = useState<number>(0);
+
+	async function getRandomAnimal() {
+		try {
+			const response = await fetch("http://localhost:3000/home");
+			if(response.ok) {
+				const animalData = await response.json();
+				addGameInputs(animalData.name.toLowerCase());
+			}
+		} catch(error) {
+			console.log(error);
+		}
+	}
+
+	useEffect(() => {
+		getRandomAnimal();
+	}, []);
+
+	function addGameInputs(animalName) {
+		console.log(animalName);
+
+		const animalNameChars = [...animalName];
+		setRemainingLetters([...animalName]);
+		const charArray = animalNameChars.map((char, index) => ({ letter: char, input: "", index: index}));
+		setGameWordInputs(charArray);
+	}
+
+	function giveHint() {
+		if(hintCount < 5) {
+			setHintCount(hintCount + 1);
+			let randIndex = -1;
+
+			while(randIndex === -1 || remainingLetters[randIndex] === " ") {
+				randIndex = Math.floor(Math.random() * remainingLetters.length);
+			}
+			
+			setGameWordInputs((prev) => 
+				prev.map((char) => ((char.index === randIndex) && (char.letter !== " ")) ? {
+					...char, input: char.letter } : char 
+				)
+			);
+			setRemainingLetters((prev) => prev.map((char, index) => index === randIndex ? " " : char));
+		}
+	}
 
 	return (
 		<>
@@ -21,11 +71,22 @@ const Home = () => {
 						</div>
 						<div className={styles.animalGameMainContainer}>
 							<div className={styles.gameWordContainer}>
-								<pre className={styles.gameWordText}>________ ________</pre>
+								{gameWordInputs.map((input) => ( input.letter !== " " ?
+									<input type="text" size="1" className={styles.gameInputs} 
+										placeholder="__" maxLength="1" key={input.index} value={input.input ?? ""}
+											onChange={(e) => { setGameWordInputs((prev) => prev.map((i) => 
+												i.index === input.index ? {
+													...i, input: e.target.value } : i
+												)
+											)}}/>
+									:
+									<input type="text" size="1" className={styles.emptySpace} 
+										key={input.index} disabled/>
+								))}
 							</div>
 
 							<div className={styles.gameBtnContainer}>
-								<button className={styles.hintBtn}>? Hint 0/5</button>
+								<button className={styles.hintBtn} onClick={() => giveHint()} >? Hint {hintCount}/5</button>
 								<button className={styles.giveupBtn}>Give Up</button>
 							</div>
 							<img className={styles.animalGameImg} src="/placeholder.png" alt="American Woodcock facing towards the camera"/>
