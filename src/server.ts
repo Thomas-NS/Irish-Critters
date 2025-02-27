@@ -25,8 +25,13 @@ app.get("/critters", async (req: Request, res: Response) => {
   res.json(result.rows);
 });
 
+app.get("/home", async (req: Request, res: Response) => {
+  const randomAnimalResult = await pool.query("SELECT * FROM animals ORDER BY RANDOM() LIMIT 1");
+  res.json(randomAnimalResult.rows[0]);
+});
+
 const port: number = 5900;
 app.listen(port, () => {
-  console.log("Server is running at localhost:${port}");
+  console.log(`Server is running at localhost:${port}`);
 });
 
