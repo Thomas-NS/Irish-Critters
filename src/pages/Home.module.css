@@ -1,5 +1,5 @@
 .homeContainer {
-	margin: 50px 50px 0 50px;
+	margin: 50px 0px 50px 80px;
 	display: flex;
 	justify-content: center;
 	flex-wrap: wrap;
@@ -103,6 +103,7 @@
 }
 
 .wildFactText {
+	font-family: "Marvel", serif;
 	margin-top: 0;
 	font-size: 1.4rem;
 }
@@ -163,6 +164,16 @@ a {
 	gap: 200px;
 }
 
-.gameWordText {
-	letter-spacing: 5px;
+.gameInputs, .emptySpace, .gameInputCorrect {
+	background: none;
+	font-size: 1rem;
+	text-align: center;
+	border: none;
+	margin: 20px 0 20px 0;
+}
+.gameInputs:focus {
+	outline: none;
+}
+.gameInputCorrect {
+	color: green;
 }
