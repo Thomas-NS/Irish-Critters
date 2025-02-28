@@ -10,6 +10,7 @@ const Home = () => {
 	}[]>([]);
 	const [remainingLetters, setRemainingLetters] = useState<string[]>([]);
 	const [hintCount, setHintCount] = useState<number>(0);
+	const [hasGivenUp, setHasGivenUp] = useState<boolean>(false);
 
 	async function getRandomAnimal() {
 		try {
@@ -54,6 +55,12 @@ const Home = () => {
 		}
 	}
 
+	function retryGame() {
+		setHasGivenUp(false);
+		setHintCount(0);
+		getRandomAnimal();
+	}
+
 	return (
 		<>
 			<section className={styles.homeContainer}>
@@ -73,7 +80,7 @@ const Home = () => {
 							<div className={styles.gameWordContainer}>
 								{gameWordInputs.map((input) => ( input.letter !== " " ?
 									<input type="text" size="1" className={styles.gameInputs} 
-										placeholder="__" maxLength="1" key={input.index} value={input.input ?? ""}
+										placeholder="__" maxLength="1" key={input.index} value={!hasGivenUp ? (input.input ?? "") : input.letter}
 											onChange={(e) => { setGameWordInputs((prev) => prev.map((i) => 
 												i.index === input.index ? {
 													...i, input: e.target.value } : i
@@ -86,8 +93,13 @@ const Home = () => {
 							</div>
 
 							<div className={styles.gameBtnContainer}>
-								<button className={styles.hintBtn} onClick={() => giveHint()} >? Hint {hintCount}/5</button>
-								<button className={styles.giveupBtn}>Give Up</button>
+								{ !hasGivenUp ? (
+									<>
+									<button className={styles.hintBtn} onClick={() => giveHint()} >? Hint {hintCount}/5</button>
+									<button className={styles.giveupBtn} onClick={() => setHasGivenUp(true)}>Give Up</button>
+									</>
+								) : <button className={styles.tryAgainBtn} onClick={() => retryGame()}>Try Again</button>
+								}
 							</div>
 							<img className={styles.animalGameImg} src="/placeholder.png" alt="American Woodcock facing towards the camera"/>
 						</div>
