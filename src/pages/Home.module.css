@@ -170,10 +170,17 @@ a {
 	text-align: center;
 	border: none;
 	margin: 20px 0 20px 0;
+	user-select: none;
 }
 .gameInputs:focus {
 	outline: none;
 }
 .gameInputCorrect {
 	color: green;
+	transform: scale(1.5);
 }
+
+.gameInputs:disabled {
+	color: inherit;
+}
+
