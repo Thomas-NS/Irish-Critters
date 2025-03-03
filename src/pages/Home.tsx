@@ -63,6 +63,16 @@ const Home = () => {
 			...prevInput, input: newInput } : prevInput
 		)); 
 
+		let nextInputIndex = inputObject.index + 1;
+		while(nextInputIndex < gameWordInputs.length && (gameWordInputs[nextInputIndex].letter === " " ||  gameWordInputs[nextInputIndex].letter === "-")) {
+			nextInputIndex++;
+		}
+
+		const nextInput = inputRef.current[nextInputIndex];
+		if(newInput !== "" && nextInput) {
+			nextInput.focus();
+		}
+
 		if(newInput === inputObject.letter) {
 			checkIfWon(inputObject.index);
 		}
