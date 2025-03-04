@@ -1,4 +1,3 @@
-import styles from './App.module.css';
 import Navbar from './components/Navbar';
 import Critters from './pages/Critters'
 import Home from './pages/Home'
