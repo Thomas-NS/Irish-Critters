@@ -1,3 +1,5 @@
+import dotenv from "dotenv";
+dotenv.config({ path: "../.env" });
 import express, {Express, Request, Response} from 'express';
 import { Pool } from 'pg';
 import cors from 'cors';
@@ -7,13 +9,14 @@ const app: Express = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "..", "public")));
+console.log("DB_PASSWORD:", process.env.DB_PASSWORD);
 
 const pool = new Pool({
-  host: "localhost",
+  host: process.env.DB_HOST,
   port: 5432,
-  user: "tom",
-  password: "8Jp986%XrfMHV6V|cltdi",
-  database: "postgres",
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
 });
 
 pool.connect()
