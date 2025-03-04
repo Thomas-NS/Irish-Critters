@@ -1,5 +1,6 @@
 .allAnimalsContainer {
 	margin-top: 30px;
+	margin-inline: 20px;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 }
@@ -8,7 +9,7 @@
 	display: grid;
 	background-color: #D9D9D9;
 	border-radius: 15px;
-	margin: 30px;
+	margin: 50px;
 }
 
 .animalNameContainer {
@@ -17,3 +18,15 @@
 	align-items: center;
 	gap: 10px;
 } 
+
+.animalImage {
+	height: 250px;
+	margin-inline: auto;
+	margin-bottom: 40px;
+	border-radius: 10px;
+}
+
+.animalNameContainer h3 {
+	font-family: "Marvel", serif;
+  	font-weight: 700;
+}
